@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://rainbow_shadder.tres" type="Shader" id=1]
+
+[sub_resource type="Curve3D" id=1]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 7.59998, 0.00844423, 0, 1.28355, 0.472888, 0, -1.28355, -0.472888, 0, 3.81688, 2.40666, 0, 2.75288, 0.101333, 0, -2.75288, -0.101333, 0, 0.810665, -0.0253335, 0, 1.90844, -1.92533, 0, -1.90844, 1.92533, 0, -1.97599, 2.86266, 0, 0, 0, 0, 0, 0, 0, -5.40443, 0.0253331, 0 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/density = 0.25
+shader_param/speed = 0.5
+
+[node name="rainbow_test" type="Spatial"]
+
+[node name="Path" type="Path" parent="."]
+transform = Transform( 0.997878, 0, 0, 0, 0.997878, 0, 0, 0, 0.997878, 0, 0, 0 )
+curve = SubResource( 1 )
+
+[node name="CSGPolygon" type="CSGPolygon" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.568173, 0, 0, 0 )
+polygon = PoolVector2Array( 0, 0, 0, 0.1, 1, 0.1, 1, 0 )
+mode = 2
+path_node = NodePath("../Path")
+path_interval_type = 0
+path_interval = 0.01
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+material = SubResource( 2 )

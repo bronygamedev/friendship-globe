@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://654q18urvayb"]
+
+[ext_resource type="PackedScene" uid="uid://c0b8viim22cro" path="res://3dmodles/rainbow.glb" id="1_my8ku"]
+
+[node name="rainbow" instance=ExtResource("1_my8ku")]

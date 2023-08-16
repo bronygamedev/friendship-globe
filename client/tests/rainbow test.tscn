@@ -1,0 +1,139 @@
+[gd_scene load_steps=15 format=3 uid="uid://dvkw50k2mk0fn"]
+
+[ext_resource type="Texture2D" uid="uid://cvxs3bidtu6g4" path="res://R.jpg" id="1_l062p"]
+[ext_resource type="Script" path="res://free_look_camera.gd" id="2_24g6r"]
+[ext_resource type="Script" path="res://addons/curvemesh3d/curvemesh3d.gd" id="5_ckk8q"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_i8j3q"]
+panorama = ExtResource("1_l062p")
+
+[sub_resource type="Sky" id="Sky_2nlp8"]
+sky_material = SubResource("PanoramaSkyMaterial_i8j3q")
+
+[sub_resource type="Environment" id="Environment_lxssa"]
+background_mode = 2
+sky = SubResource("Sky_2nlp8")
+
+[sub_resource type="Curve3D" id="Curve3D_dvy4j"]
+_data = {
+"points": PackedVector3Array(0.6, 0.46, 0, 2.49249, 0.657864, 0.684825, 0, 0, 0, 1.09855, 0.498796, -0.116451, -0.6, -0.46, 0, 1.73119, 3.05698, 3.10532, 0, 0, 0, 0, 0, 0, -1.82854, 2.05749, 1.81306),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_b3iyt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Shader" id="Shader_v0tsh"]
+code = "shader_type spatial;
+//render_mode unshaded;
+
+uniform vec3 top_red = vec3(1.0, 0.0, 0.0);
+uniform vec3 top_orange = vec3(1.0, 0.5, 0.0);
+uniform vec3 top_yellow = vec3(1.0, 1.0, 0.0);
+uniform vec3 top_green = vec3(0.0, 1.0, 0.0);
+uniform vec3 top_blue = vec3(0.0, 0.0, 1.0);
+uniform vec3 top_indigo = vec3(0.29, 0.0, 0.51);
+uniform vec3 top_violet = vec3(0.93, 0.51, 0.93);
+
+uniform vec3 bottom_red = vec3(1.0, 0.0, 0.0);
+uniform vec3 bottom_orange = vec3(1.0, 0.5, 0.0);
+uniform vec3 bottom_yellow = vec3(1.0, 1.0, 0.0);
+uniform vec3 bottom_green = vec3(0.0, 1.0, 0.0);
+uniform vec3 bottom_blue = vec3(0.0, 0.0, 1.0);
+uniform vec3 bottom_indigo = vec3(0.29, 0.0, 0.51);
+uniform vec3 bottom_violet = vec3(0.93, 0.51, 0.93);
+
+void fragment() {
+    float segment = floor(UV.x * 7.0);
+    if (UV.y < 2.0) {
+        if (segment == 6.0) {
+            ALBEDO = bottom_violet;
+        } else if (segment ==5.0) {
+            ALBEDO = bottom_indigo;
+        } else if (segment ==4.0) {
+            ALBEDO = bottom_blue;
+        } else if (segment ==3.0) {
+            ALBEDO = bottom_green;
+        } else if (segment ==2.0) {
+            ALBEDO = bottom_yellow;
+        } else if (segment ==1.0) {
+            ALBEDO = bottom_orange;
+        } else {
+            ALBEDO = bottom_red;
+        }
+    } else {
+        if (segment ==6.0) {
+            ALBEDO = top_violet;
+        } else if (segment ==5.0) {
+            ALBEDO = top_indigo;
+        } else if (segment ==4.0) {
+            ALBEDO = top_blue;
+        } else if (segment ==3.0) {
+            ALBEDO = top_green;
+        } else if (segment ==2.0) {
+            ALBEDO = top_yellow;
+        } else if (segment ==1.0) {
+            ALBEDO = top_orange;
+        } else {
+            ALBEDO = top_red;
+        }
+    }
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w37q6"]
+render_priority = 0
+shader = SubResource("Shader_v0tsh")
+shader_parameter/top_red = Vector3(1, 0, 0)
+shader_parameter/top_orange = Vector3(1, 0.5, 0)
+shader_parameter/top_yellow = Vector3(1, 1, 0)
+shader_parameter/top_green = Vector3(0, 1, 0)
+shader_parameter/top_blue = Vector3(0, 0, 1)
+shader_parameter/top_indigo = Vector3(0.29, 0, 0.51)
+shader_parameter/top_violet = Vector3(0.93, 0.51, 0.93)
+shader_parameter/bottom_red = Vector3(1, 0, 0)
+shader_parameter/bottom_orange = Vector3(1, 0.5, 0)
+shader_parameter/bottom_yellow = Vector3(1, 1, 0)
+shader_parameter/bottom_green = Vector3(0, 1, 0)
+shader_parameter/bottom_blue = Vector3(0, 0, 1)
+shader_parameter/bottom_indigo = Vector3(0.29, 0, 0.51)
+shader_parameter/bottom_violet = Vector3(0.93, 0.51, 0.93)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nj0ny"]
+next_pass = SubResource("ShaderMaterial_w37q6")
+
+[sub_resource type="Shader" id="Shader_gnlqd"]
+code = "shader_type canvas_item;
+uniform sampler2D gradient;
+
+void vertex() {
+    COLOR = texture(gradient, UV);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ljba3"]
+shader = SubResource("Shader_gnlqd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pygpk"]
+next_pass = SubResource("ShaderMaterial_ljba3")
+
+[node name="rainbow test" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.93206)
+environment = SubResource("Environment_lxssa")
+script = ExtResource("2_24g6r")
+
+[node name="CurveMesh3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_dvy4j")
+script = ExtResource("5_ckk8q")
+radius_profile = SubResource("Curve_b3iyt")
+radial_resolution = 4
+material = SubResource("StandardMaterial3D_nj0ny")
+cap_rings = 1
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46665, 0, -3.20001)
+material = SubResource("StandardMaterial3D_pygpk")

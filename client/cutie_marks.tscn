@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b408du23uwy5x"]
+[gd_scene load_steps=3 format=3 uid="uid://b408du23uwy5x"]
+
+[ext_resource type="ArrayMesh" uid="uid://bkpdqu5uq8o1" path="res://3dmodles/cutiemarks/twilight.obj" id="1_75wp0"]
 
 [sub_resource type="GDScript" id="GDScript_d43oy"]
 script/source = "extends Node3D
@@ -17,11 +19,10 @@ func _process(delta):
 [node name="cutie marks" type="Node3D"]
 script = SubResource("GDScript_d43oy")
 
-[node name="CSGSphere3D2" type="CSGSphere3D" parent="."]
-transform = Transform3D(1.089, 0, 0, 0, 2, 0, 0, 0, 1.089, -0.00944716, 0.0874205, -0.00440007)
-radius = 0.0443766
-radial_segments = 100
-rings = 100
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.089, 0, 0, 0, -8.74228e-08, -1.089, 0, 2, -4.76017e-08, -0.00944716, 0.0874205, -0.00440007)
+mesh = ExtResource("1_75wp0")
+skeleton = NodePath("")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 transform = Transform3D(0.544, 0, 0, 0, 1, 0, 0, 0, 0.544, -0.101907, 0.0874205, -0.00440007)
