@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/goutte.camera.trackball/trackball_camera.gd" type="Script" id=1]
+[ext_resource path="res://3DModels/Earth.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://R.jpg" type="Texture" id=3]
+
+[sub_resource type="PanoramaSky" id=1]
+panorama = ExtResource( 3 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+
+[node name="world" type="Spatial"]
+
+[node name="Earth" type="MeshInstance" parent="."]
+mesh = ExtResource( 2 )
+
+[node name="TrackballCamera" type="Camera" parent="Earth"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.85795 )
+environment = SubResource( 2 )
+script = ExtResource( 1 )
+stabilize_horizon = true
+mouse_strength = 0.5
+joystick_strength = 0.5
+action_enabled = false
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Earth/TrackballCamera"]
