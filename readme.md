@@ -1,11 +1,6 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/bronygamedev/friendship-globe)  ![Discord](https://img.shields.io/discord/999679634994122824)  ![GitHub forks](https://img.shields.io/github/forks/bronygamedev/friendship-globe)  ![GitHub Repo stars](https://img.shields.io/github/stars/bronygamedev/friendship-globe)  ![GitHub closed issues](https://img.shields.io/github/issues-closed/bronygamedev/friendship-globe)  ![GitHub milestones](https://img.shields.io/github/milestones/open/bronygamedev/friendship-globe)
 ![GitHub closed issues by-label](https://img.shields.io/github/issues-closed/bronygamedev/friendship-globe/bug)
 
-
-
-
-
-
 # Friendship globe
 
 The friendship globe symbols the friendships we have made by joining the brony Fandom.
@@ -24,8 +19,8 @@ First, make sure you have the following programs installed
 * latest [Godot 3](https://godotengine.org/download) build
 * [Python 3.11](https://godotengine.org/download/3.x/)
 
-not enough done on the project
+not enough is done on the project.
 
 >  **NOTE**:
 >
-> there currently are no official servers to run this, for now it's a proof of concept
+> there currently are no official servers to run this, for now it's a proof of concept.
