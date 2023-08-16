@@ -17,9 +17,7 @@ first make sure you have the following progremes installed
 * latest [godot 4](https://godotengine.org/download) build
 * [python 3.11](https://www.python.org/downloads/)
 
-then download the latest relese or clone this repo  `git clone https://github.com/bronygamedev/friendship-globe.git`
-
-go to the server directory
+not enough info on project
 
 >  **NOTE**:
 >
