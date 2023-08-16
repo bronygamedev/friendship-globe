@@ -1,5 +1,4 @@
-![GitHub contributors](https://img.shields.io/github/contributors/bronygamedev/friendship-globe)  ![Discord](https://img.shields.io/discord/999679634994122824)  ![GitHub forks](https://img.shields.io/github/forks/bronygamedev/friendship-globe)  ![GitHub Repo stars](https://img.shields.io/github/stars/bronygamedev/friendship-globe)  ![GitHub closed issues](https://img.shields.io/github/issues-closed/bronygamedev/friendship-globe)  ![GitHub milestones](https://img.shields.io/github/milestones/open/bronygamedev/friendship-globe)
-![GitHub closed issues by-label](https://img.shields.io/github/issues-closed/bronygamedev/friendship-globe/bug)
+![GitHub contributors](https://img.shields.io/github/contributors/bronygamedev/friendship-globe)  ![Discord](https://img.shields.io/discord/999679634994122824)  ![GitHub forks](https://img.shields.io/github/forks/bronygamedev/friendship-globe)  ![GitHub Repo stars](https://img.shields.io/github/stars/bronygamedev/friendship-globe)  ![GitHub closed issues](https://img.shields.io/github/issues-closed/bronygamedev/friendship-globe)  ![GitHub milestones](https://img.shields.io/github/milestones/open/bronygamedev/friendship-globe)  ![GitHub closed issues by-label](https://img.shields.io/github/issues-closed/bronygamedev/friendship-globe/bug)
 
 # Friendship globe
 
