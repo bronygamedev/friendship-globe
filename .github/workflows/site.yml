@@ -7,7 +7,7 @@ on:
     branches: 
      - "main"
   pull_request:
-    branches:
+    branches:https://img.shields.io/github/contributors/bronygamedev/friendship-globe
     - "main"
 
   # Allows you to run this workflow manually from the Actions tab
