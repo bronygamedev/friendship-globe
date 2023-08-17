@@ -2,7 +2,7 @@
 
 # Friendship globe
 
-The friendship globe symbols the friendships we have made by joining the brony Fandom.
+The friendship globe symbols the friendships we have made by joining the MLP Fandom.
 
 ## Inspiration
 
