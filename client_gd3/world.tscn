@@ -87,7 +87,7 @@ tracks/2/keys = {
 [node name="world" type="Spatial"]
 script = ExtResource( 3 )
 
-[node name="earth_core" type="CSGSphere" parent="."]
+[node name="earth_core" type="Position3D" parent="."]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 
 [node name="TrackballCamera" type="Camera" parent="earth_core"]
@@ -99,13 +99,14 @@ joystick_strength = 0.5
 action_enabled = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="earth_core/TrackballCamera"]
+light_energy = 5.0
 
 [node name="Earth" type="MeshInstance" parent="."]
-transform = Transform( -0.951159, 0, -0.309042, 0, 1, 0, 0.309042, 0, -0.951159, 0, 0, 0 )
+transform = Transform( 0.30947, 0, -0.952912, 0, 1, 0, 0.952912, 0, 0.30947, 0, 0, 0 )
 mesh = ExtResource( 2 )
 
 [node name="cutiemarks" parent="Earth" instance=ExtResource( 5 )]
-transform = Transform( 0.890932, -0.453946, 1.98426e-08, 0, -4.37114e-08, -1, 0.453946, 0.890932, -3.89439e-08, 0, 1.43983, 0 )
+transform = Transform( 0.999913, 0, 0, 0, 0.999913, 0, 0, 0, 1, 0, 1.43983, 0 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
