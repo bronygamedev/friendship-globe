@@ -1,4 +1,3 @@
-tool
 extends Spatial
 export var rotation_speed:float = 1
 var last_camera_position

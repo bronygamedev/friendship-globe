@@ -102,11 +102,13 @@ action_enabled = false
 light_energy = 5.0
 
 [node name="Earth" type="MeshInstance" parent="."]
-transform = Transform( 0.30947, 0, -0.952912, 0, 1, 0, 0.952912, 0, 0.30947, 0, 0, 0 )
+transform = Transform( 0.980082, 0, -0.208469, 0, 1, 0, 0.208469, 0, 0.980082, 0, 0, 0 )
 mesh = ExtResource( 2 )
 
 [node name="cutiemarks" parent="Earth" instance=ExtResource( 5 )]
 transform = Transform( 0.999913, 0, 0, 0, 0.999913, 0, 0, 0, 1, 0, 1.43983, 0 )
+
+[node name="rainbows" type="Spatial" parent="Earth"]
 
 [node name="UI" type="CanvasLayer" parent="."]
 
