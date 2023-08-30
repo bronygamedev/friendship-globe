@@ -4,7 +4,7 @@ from fastapi import *
 from fastapi.responses import *
 from datetime import datetime
 from pydantic import BaseModel
-
+import json
 
 app = FastAPI()
 
@@ -32,10 +32,6 @@ def check_for_table(name: str):
         return data == []
 
 
-def get_id():
-    return cursor.execute(f"SELECT MAX(id) FROM points").fetchall()
-
-
 @app.get("/", response_class=HTMLResponse)
 async def root():
     with open("index.html", "r") as f:
@@ -44,10 +40,11 @@ async def root():
 
 @app.post("/api/set_point")
 async def set_points(data: point):
+    print(data)
     try:
-        id = get_id()
-        print(id)
-        cursor.execute(f"INSERT INTO points (x,y,z,day) VALUES (0,0,0,23)")
+        cursor.execute(
+            f"INSERT INTO points (x,y,z,day) VALUES ({data.x},{data.y},{data.z},{data.day})"
+        )
         DB.commit()
     except Exception as ex:
         raise HTTPException(status_code=500, detail=ex)
@@ -55,10 +52,12 @@ async def set_points(data: point):
 
 
 @app.get("/api/get_points")
-async def get_points():
+async def get_points(request: Request):
     day = datetime.now().day
-    print(day)
-    return cursor.execute(f"SELECT * FROM points;").fetchall()
+    data = cursor.execute(f"SELECT * FROM points;").fetchall()
+    json_data = json.dumps(data)
+    # print(data, " ", json_data, " ", day, " ", request.headers)
+    return data
 
 
 if __name__ == "__main__":

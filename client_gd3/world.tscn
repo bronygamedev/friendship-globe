@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/goutte.camera.trackball/trackball_camera.gd" type="Script" id=1]
 [ext_resource path="res://3DModels/Earth.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://world.gd" type="Script" id=3]
 [ext_resource path="res://images/arrow.png" type="Texture" id=4]
 [ext_resource path="res://cutiemarks.tscn" type="PackedScene" id=5]
+[ext_resource path="res://audio/click1.ogg" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -87,18 +88,18 @@ tracks/2/keys = {
 [node name="world" type="Spatial"]
 script = ExtResource( 3 )
 
-[node name="earth_core" type="Position3D" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-
-[node name="TrackballCamera" type="Camera" parent="earth_core"]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 5.71591 )
+[node name="camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.85795 )
+current = true
 script = ExtResource( 1 )
 stabilize_horizon = true
 mouse_strength = 0.5
 joystick_strength = 0.5
-action_enabled = false
+action_zoom_in = "zoom_in"
+action_zoom_out = "zoom_out"
+zoom_inertia_treshold = 1e-06
 
-[node name="DirectionalLight" type="DirectionalLight" parent="earth_core/TrackballCamera"]
+[node name="DirectionalLight" type="DirectionalLight" parent="camera"]
 light_energy = 5.0
 
 [node name="Earth" type="MeshInstance" parent="."]
@@ -117,26 +118,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="bottom_popup" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.237
 margin_top = 144.0
-margin_right = 1026.0
-margin_bottom = 742.0
+margin_right = 2.0
+margin_bottom = -0.200012
+
+[node name="button_sound" type="AudioStreamPlayer" parent="UI/bottom_popup"]
+stream = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="UI/bottom_popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_top = 456.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_right = -2.0
+margin_bottom = 2.0
 color = Color( 0.298039, 0.298039, 0.298039, 0.701961 )
 
-[node name="rotate_button" type="Button" parent="UI/bottom_popup"]
-anchor_top = -3.089
-anchor_bottom = -3.089
+[node name="rotate_button" type="Button" parent="UI/bottom_popup/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 10.0
-margin_top = 2305.22
-margin_right = 103.0
-margin_bottom = 2338.22
+margin_top = 1.99799
+margin_right = -921.0
+margin_bottom = -109.002
 toggle_mode = true
 pressed = true
 text = "rotate earth"
+
+[node name="api button" type="Button" parent="UI/bottom_popup/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 114.0
+margin_top = 4.0
+margin_right = -817.0
+margin_bottom = -107.0
+text = "update"
 
 [node name="bottomPopupButton" type="TextureButton" parent="UI/bottom_popup"]
 margin_left = 481.0
@@ -152,4 +169,15 @@ flip_v = true
 anims/RESET = SubResource( 1 )
 anims/pop = SubResource( 2 )
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+use_threads = true
+timeout = 5.0
+
+[node name="update_timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="button_up" from="UI/bottom_popup/ColorRect/api button" to="." method="_on_api_button_up"]
 [connection signal="pressed" from="UI/bottom_popup/bottomPopupButton" to="." method="_on_bottomPopupButton_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_HTTPRequest_completed"]
+[connection signal="timeout" from="update_timer" to="." method="_on_update_timer_timeout"]

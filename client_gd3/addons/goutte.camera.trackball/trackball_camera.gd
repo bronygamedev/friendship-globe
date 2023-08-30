@@ -242,7 +242,6 @@ func process_zoom(delta: float):
 		if Input.is_action_just_released(action_zoom_out):
 			add_zoom_inertia(zoo_s * -1.0)
 
-
 func process_drag_inertia(delta: float):
 	var inertia := _dragInertia.length()
 	#assert(inertia > 0, "Can this even happen? → no, unless cosmic rays")

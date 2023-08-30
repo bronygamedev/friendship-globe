@@ -12,9 +12,8 @@
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends Spatial
-func _process(delta):
-	$twilight.rotate_y(deg2rad(2))
-	$ring.rotate_y(deg2rad(1))
+func _process(_delta):
+	rotate_y(deg2rad(1))
 "
 
 [node name="cutiemarks" type="Spatial"]
