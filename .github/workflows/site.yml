@@ -36,6 +36,7 @@ jobs:
     - name: Build with Jekyll
       uses: actions/jekyll-build-pages@v1
       with:
+        baseurl: /projects/project
         source: ./site
         destination: ./_site
     - name: Upload artifact
