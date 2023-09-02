@@ -36,7 +36,6 @@ jobs:
     - name: Build with Jekyll
       uses: actions/jekyll-build-pages@v1
       with:
-        baseurl: /projects/project
         source: ./site
         destination: ./_site
     - name: Upload artifact
@@ -46,7 +45,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: bronygamedev.github.io/projects/friendship-globe
     runs-on: ubuntu-latest
     needs: build
     steps:
