@@ -22,7 +22,6 @@
         </div>
 
     </nav>
-    < base target="_blank">
     <div id="md" class="center"></div>
     <script>
         var xhr = new XMLHttpRequest();
@@ -35,7 +34,7 @@
             }
         };
         xhr.send();
-        const divElement = document.querySelector('#md');
+        const divElement = document.sel('md');
         const aElements = divElement.querySelectorAll('a');
         aElements.forEach(a => {
           a.setAttribute('target', '_blank');
