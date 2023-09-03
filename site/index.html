@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="/assets/images/profile.png">
     <link rel="stylesheet" href="/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.0.6/markdown-it.min.js"></script>
-
+    <base>
 </head>
 
 <body>
@@ -26,21 +26,29 @@
     <script>
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://raw.githubusercontent.com/bronygamedev/friendship-globe/main/readme.md', true);
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = async function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 var md = xhr.responseText;
-                var html = markdownit().render(md);
-                document.getElementById('md').innerHTML = html;
+                var html = await markdownit().render(md);
+                document.getElementById('md').innerHTML = String(html).replace("<a",String('<a target="_blank"'));
+
             }
         };
         xhr.send();
-        const divElement = document.sel('md');
-        const aElements = divElement.querySelectorAll('a');
-        aElements.forEach(a => {
-          a.setAttribute('target', '_blank');
-        });
 
-    </script> 
+    </script>
+    <script>
+        window.addEventListener('load', (event) => {
+          const divElement = document.querySelector('#md');
+          const aElements = divElement.querySelectorAll('a');
+          console.log(aElements)
+          aElements.forEach(a => {
+            console.log("a")
+            a.setAttribute('target', '_blank');
+          });
+        });
+      </script>
+      
 
 </body>
 
