@@ -1,6 +1,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-THHX0JERPM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-THHX0JERPM');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>friendship globe</title>
@@ -30,7 +39,7 @@
             if (xhr.readyState === 4 && xhr.status === 200) {
                 var md = xhr.responseText;
                 var html = await markdownit().render(md);
-                document.getElementById('md').innerHTML = String(html).replace("<a",String('<a target="_blank"'));
+                document.getElementById('md').innerHTML = String(html).replace("<a", String('<a target="_blank"'));
 
             }
         };
@@ -39,16 +48,16 @@
     </script>
     <script>
         window.addEventListener('load', (event) => {
-          const divElement = document.querySelector('#md');
-          const aElements = divElement.querySelectorAll('a');
-          console.log(aElements)
-          aElements.forEach(a => {
-            console.log("a")
-            a.setAttribute('target', '_blank');
-          });
+            const divElement = document.querySelector('#md');
+            const aElements = divElement.querySelectorAll('a');
+            console.log(aElements)
+            aElements.forEach(a => {
+                console.log("a")
+                a.setAttribute('target', '_blank');
+            });
         });
-      </script>
-      
+    </script>
+
 
 </body>
 
