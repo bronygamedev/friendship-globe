@@ -1,24 +1,39 @@
+import json
+import os
 import sqlite3
+import sys
+import threading
+from datetime import datetime, timedelta
+
 import uvicorn
 from fastapi import *
 from fastapi.responses import *
-from datetime import datetime
 from pydantic import BaseModel
-import json
 
 app = FastAPI()
 
+yesterday = None
+today = datetime.now().day
 # DB settup
 print("DB Init")
 DB = sqlite3.connect("sql.db")
 cursor = DB.cursor()
+running = True
 
 
 class point(BaseModel):
     x: float
     y: float
     z: float
-    day: int
+
+
+def placeholder():
+    while running:
+        pass
+
+
+def resetdb():
+    pass
 
 
 def check_for_table(name: str):
@@ -43,7 +58,7 @@ async def set_points(data: point):
     print(data)
     try:
         cursor.execute(
-            f"INSERT INTO points (x,y,z,day) VALUES ({data.x},{data.y},{data.z},{data.day})"
+            f"INSERT INTO points (x,y,z,day) VALUES ({data.x},{data.y},{data.z},{today})"
         )
         DB.commit()
     except Exception as ex:
@@ -53,7 +68,6 @@ async def set_points(data: point):
 
 @app.get("/api/get_points")
 async def get_points(request: Request):
-    day = datetime.now().day
     data = cursor.execute(f"SELECT * FROM points;").fetchall()
     json_data = json.dumps(data)
     # print(data, " ", json_data, " ", day, " ", request.headers)
@@ -70,4 +84,4 @@ if __name__ == "__main__":
         DB.commit()
         print(cursor.execute("""SELECT * FROM points""").fetchall())
     print("starting server")
-    uvicorn.run("server:app", port=2010, reload=True, access_log=True)
+    threading.Thread(target=placeholder).run()

@@ -178,3 +178,10 @@ cython_debug/
 
 # database
 **/*.db*
+
+# blender backup file
+*.blend1
+
+*.pem
+*.crt 
+*.key

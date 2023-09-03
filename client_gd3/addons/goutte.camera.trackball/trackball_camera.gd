@@ -157,7 +157,7 @@ func input(event: InputEvent):
 
 
 func handle_mouse_input(event: InputEvent):
-	if (not mouse_move_mode) and (event is InputEventMouseButton):
+	if (not mouse_move_mode) and (event is InputEventMouseButton) and (event.button_index != BUTTON_RIGHT):
 		if event.pressed:
 			_mouseDragStart = get_mouse_position()
 		else:
