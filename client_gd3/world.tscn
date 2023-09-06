@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/goutte.camera.trackball/trackball_camera.gd" type="Script" id=1]
 [ext_resource path="res://3DModels/Earth.obj" type="ArrayMesh" id=2]
@@ -7,9 +7,10 @@
 [ext_resource path="res://cutiemarks.tscn" type="PackedScene" id=5]
 [ext_resource path="res://audio/click1.ogg" type="AudioStream" id=6]
 [ext_resource path="res://3DModels/pindrop.obj" type="ArrayMesh" id=7]
+[ext_resource path="res://images/pindrop.svg" type="Texture" id=8]
 
-[sub_resource type="ConvexPolygonShape" id=3]
-points = PoolVector3Array( -0.086015, -0.204134, -1.03198, 0.140375, 1.02543, -0.159465, 0.97933, -0.171553, -0.0943315, -0.88706, -0.523105, -0.221993, 0.107798, -1.0448, 0.196157, -0.887113, 0.534573, -0.125595, 0.234671, 0.822898, 0.611123, 0.649799, -0.26591, 0.801475, -0.37224, -0.488547, 0.863425, 0.8766, 0.534901, -0.254097, -0.755827, 0.436415, 0.576962, 0.362291, -0.682065, -0.73329, -0.344385, 0.409359, -0.901592, 0.589384, 0.150425, -0.865795, 0.909544, 0.310693, 0.451729, -0.279017, -1.00843, -0.190691, -0.407812, 0.955526, -0.0940762, -0.791746, -0.331109, -0.607393, 0.171149, 0.760518, -0.704312, 0.74648, -0.65035, 0.13027, -0.917006, -0.170073, 0.354061, 0.234732, -0.619268, 0.835797, -0.562882, -0.774571, 0.288883, -0.277193, 0.724699, 0.705554, 0.653155, 0.824975, -0.0616581, -0.989244, 0.118598, -0.320019, -0.307719, -0.709922, -0.63366, -0.471683, 0.118177, 0.934878, 0.267102, 0.342438, 0.900703, 0.493024, -0.750029, -0.576538, -0.436698, 0.756074, -0.572368, 0.684523, -0.138422, -0.799858, -0.692577, 0.181267, -0.76452, -0.374747, 0.921083, 0.323562, -0.182236, -0.974437, 0.388025, 0.424808, -0.743776, 0.640077, 0.203683, -1.00785, -0.287143, 0.14029, -0.17208, 1.03759, 0.301466, 0.15118, -0.99922, -0.918397, 0.149621, 0.482664, 0.520658, 0.659405, -0.635436, 0.875084, -0.330367, 0.354469, 0.875323, 0.309953, -0.510015, 0.429312, 0.923805, 0.260055, -0.277632, 0.469757, 0.898764, 0.874211, -0.362126, -0.317356, 0.203916, -0.396808, -0.963693, -0.755484, 0.659784, 0.289522, -0.117997, 0.98762, 0.32425, -0.752198, -0.454907, 0.478761, -0.721405, 0.530413, -0.538214, -1.02225, 0.215366, -0.0619669, -0.756289, -0.585324, -0.444896, 0.458934, 0.309975, 0.835276, -0.213916, 0.920192, -0.446836, -0.988778, -0.300242, -0.190978, -0.183743, 0.0219723, 1.04073, 0.106822, 0.631197, 0.836441, 0.331057, 0.919363, -0.382269, -0.66204, 0.790389, -0.157798, -0.472092, 0.150354, -0.930822, -0.756009, -0.233688, 0.609125, 0.52211, -0.841772, 0.130169, -0.245736, -0.651251, 0.803476 )
+[sub_resource type="SphereShape" id=3]
+radius = 1.0535
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -92,24 +93,9 @@ tracks/2/keys = {
 [node name="world" type="Spatial"]
 script = ExtResource( 3 )
 
-[node name="Earth" type="StaticBody" parent="."]
-transform = Transform( 0.156295, 0, -0.987727, 0, 1, 0, 0.987727, 0, 0.156295, 0, 0, 0 )
+[node name="center" type="Position3D" parent="."]
 
-[node name="cutiemarks" parent="Earth" instance=ExtResource( 5 )]
-transform = Transform( 0.999913, 0, 0, 0, 0.999913, 0, -1.49012e-08, 0, 1, 0, 1.43983, 0 )
-
-[node name="rainbows" type="Spatial" parent="Earth"]
-
-[node name="Mesh" type="MeshInstance" parent="Earth"]
-transform = Transform( -0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 0, 0, 0 )
-mesh = ExtResource( 2 )
-skeleton = NodePath("../..")
-
-[node name="CollisionShape" type="CollisionShape" parent="Earth"]
-transform = Transform( -0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 0, 0, 0 )
-shape = SubResource( 3 )
-
-[node name="camera" type="Camera" parent="."]
+[node name="camera" type="Camera" parent="center"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.85795 )
 current = true
 script = ExtResource( 1 )
@@ -118,12 +104,28 @@ mouse_strength = 0.5
 joystick_strength = 0.5
 action_zoom_in = "zoom_in"
 action_zoom_out = "zoom_out"
-zoom_minimum = 2.0
+zoom_minimum = 0.0
 zoom_maximum = 5.0
 zoom_inertia_treshold = 1e-06
 
-[node name="DirectionalLight" type="DirectionalLight" parent="camera"]
+[node name="DirectionalLight" type="DirectionalLight" parent="center/camera"]
 light_energy = 5.0
+
+[node name="Earth" type="StaticBody" parent="."]
+transform = Transform( 1.00002, 0, 0, 0, 1, 0, 0, 0, 1.00002, 0, 0, 0 )
+
+[node name="cutiemarks" parent="Earth" instance=ExtResource( 5 )]
+transform = Transform( 0.999913, 0, 0, 0, 0.999913, 0, -1.49012e-08, 0, 1, 0, 1.43983, 0 )
+
+[node name="rainbows" type="Spatial" parent="Earth"]
+
+[node name="Mesh" type="MeshInstance" parent="Earth"]
+cast_shadow = 0
+mesh = ExtResource( 2 )
+skeleton = NodePath("../..")
+
+[node name="CollisionShape" type="CollisionShape" parent="Earth"]
+shape = SubResource( 3 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -132,48 +134,50 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="bottom_popup" type="Control" parent="UI"]
-anchor_right = 1.0
-anchor_bottom = 1.237
 margin_top = 144.0
-margin_right = 2.0
-margin_bottom = -0.200012
+margin_right = 1026.0
+margin_bottom = 742.0
 
 [node name="button_sound" type="AudioStreamPlayer" parent="UI/bottom_popup"]
 stream = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="UI/bottom_popup"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 456.0
-margin_right = -2.0
-margin_bottom = 2.0
+anchor_right = 0.998
+anchor_bottom = 0.967
+margin_top = 432.0
+margin_right = 0.052002
+margin_bottom = -2.26605
 color = Color( 0.298039, 0.298039, 0.298039, 0.701961 )
 
 [node name="rotate_button" type="Button" parent="UI/bottom_popup/ColorRect"]
+anchor_top = -0.29
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
-margin_top = 1.99799
+margin_top = 45.49
 margin_right = -921.0
-margin_bottom = -109.002
+margin_bottom = -107.27
 toggle_mode = true
 pressed = true
 text = "rotate earth"
 
-[node name="api button" type="Button" parent="UI/bottom_popup/ColorRect"]
+[node name="pin_button" type="Button" parent="UI/bottom_popup/ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 114.0
 margin_top = 4.0
 margin_right = -817.0
 margin_bottom = -107.0
-text = "update"
+toggle_mode = true
+text = "place"
+icon = ExtResource( 8 )
+expand_icon = true
 
 [node name="bottomPopupButton" type="TextureButton" parent="UI/bottom_popup"]
 margin_left = 481.0
-margin_top = 415.0
+margin_top = 392.0
 margin_right = 581.0
-margin_bottom = 515.0
+margin_bottom = 492.0
 rect_scale = Vector2( 0.400001, 0.400001 )
 toggle_mode = true
 texture_normal = ExtResource( 4 )
@@ -193,9 +197,10 @@ autostart = true
 
 [node name="pindrop" type="MeshInstance" parent="."]
 transform = Transform( -1, 6.18172e-08, 6.18172e-08, 0, 0.707107, -0.707107, -8.74228e-08, -0.707107, -0.707107, 0, 0, 0 )
+visible = false
 mesh = ExtResource( 7 )
 
-[connection signal="button_up" from="UI/bottom_popup/ColorRect/api button" to="." method="_on_api_button_up"]
+[connection signal="pressed" from="UI/bottom_popup/ColorRect/pin_button" to="." method="_place_button_click"]
 [connection signal="pressed" from="UI/bottom_popup/bottomPopupButton" to="." method="_on_bottomPopupButton_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_HTTPRequest_completed"]
 [connection signal="timeout" from="update_timer" to="." method="_on_update_timer_timeout"]

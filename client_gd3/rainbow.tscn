@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://rainbow_shadermaterial.tres" type="Material" id=1]
+
+[node name="rainbow" type="Path"]
+
+[node name="CSGPolygon" type="CSGPolygon" parent="."]
+polygon = PoolVector2Array( 0, 0, 0, 0.01, 0.1, 0.01, 0.1, 0 )
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.01
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+material = ExtResource( 1 )

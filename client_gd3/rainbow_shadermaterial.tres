@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://rainbow_shadder.tres" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/density = 0.25
+shader_param/speed = 1.0

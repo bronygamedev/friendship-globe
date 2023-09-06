@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://rainbow_shadder.tres" type="Shader" id=1]
+[ext_resource path="res://rainbow.tscn" type="PackedScene" id=1]
 
 [sub_resource type="Curve3D" id=1]
 _data = {
@@ -8,29 +8,8 @@ _data = {
 "tilts": PoolRealArray( 0, 0, 0, 0, 0 )
 }
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = ExtResource( 1 )
-shader_param/density = 0.25
-shader_param/speed = 0.5
-
 [node name="rainbow_test" type="Spatial"]
 
-[node name="Path" type="Path" parent="."]
+[node name="Path2" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.997878, 0, 0, 0, 0.997878, 0, 0, 0, 0.997878, 0, 0, 0 )
 curve = SubResource( 1 )
-
-[node name="CSGPolygon" type="CSGPolygon" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.568173, 0, 0, 0 )
-polygon = PoolVector2Array( 0, 0, 0, 0.1, 1, 0.1, 1, 0 )
-mode = 2
-path_node = NodePath("../Path")
-path_interval_type = 0
-path_interval = 0.01
-path_simplify_angle = 0.0
-path_rotation = 2
-path_local = false
-path_continuous_u = true
-path_u_distance = 1.0
-path_joined = false
-smooth_faces = true
-material = SubResource( 2 )

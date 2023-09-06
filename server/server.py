@@ -4,7 +4,7 @@ import sqlite3
 import sys
 import threading
 from datetime import datetime, timedelta
-
+import subprocess
 import uvicorn
 from fastapi import *
 from fastapi.responses import *
@@ -19,7 +19,7 @@ print("DB Init")
 DB = sqlite3.connect("sql.db")
 cursor = DB.cursor()
 running = True
-
+reload = False
 
 class point(BaseModel):
     x: float
@@ -68,6 +68,7 @@ async def set_points(data: point):
 
 @app.get("/api/get_points")
 async def get_points(request: Request):
+    print("getting data")
     data = cursor.execute(f"SELECT * FROM points;").fetchall()
     json_data = json.dumps(data)
     # print(data, " ", json_data, " ", day, " ", request.headers)
@@ -75,6 +76,7 @@ async def get_points(request: Request):
 
 
 if __name__ == "__main__":
+    print("running")
     # checking if table exists if not creates a table named points
     if check_for_table("points"):
         cursor.execute(
@@ -84,4 +86,6 @@ if __name__ == "__main__":
         DB.commit()
         print(cursor.execute("""SELECT * FROM points""").fetchall())
     print("starting server")
-    threading.Thread(target=placeholder).run()
+    threading.Thread(target=placeholder).start()
+    uvicorn.run("server:app",port=2010,reload=True,workers=4)
+    running = False
