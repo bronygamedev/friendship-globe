@@ -1,14 +1,22 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://rainbow_shadermaterial.tres" type="Material" id=1]
 
+[sub_resource type="Curve3D" id=1]
+bake_interval = 0.01
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0.950901, -0.630857, 0, 0, 0, 0, 0, 0, 0, 1.36942, 0.643166, 2.38419e-07, 0, 0, 0, 0, 0, 0, -2.19415, 1.04938, -2.38419e-07, 0, 0, 0, 0, 0, 0, -1.35711, -0.913973, 0, 0, 0, 0, 0, 0, 0, 0.329276, -1.43097, 0, 0, 0, 0, 0, 0, 0, -0.649321, 0.200028, 0, 0, 0, 0, 0, 0, 0, 0.692404, 0.156945, 0, 0, 0, 0, 0, 0, 0, 0.932437, -1.29556, 0, 0, 0, 0, 0, 0, 0, 2.80347, -0.581619, 2.38419e-07, 0, 0, 0, 0, 0, 0, 2.785, 1.12323, 4.76837e-07, 0, 0, 0, 0, 0, 0, -1.47405, 1.56637, 0, 0, 0, 0, 0, 0, 0, -3.21583, 0.680094, 0, 0, 0, 0, 0, 0, 0, -3.11736, -0.987829, 0, 0, 0, 0, 0, 0, 0, -2.36033, -1.30172, 0, 0, 0, 0, 0, 0, 0, -2.56959, 0.347741, 0, 0, 0, 0, 0, 0, 0, -1.62176, -1.22171, 0, 0, 0, 0, 0, 0, 0, -0.877045, -1.69562, 2.38419e-07, 0, 0, 0, 0, 0, 0, 3.41278, -1.62176, 4.76837e-07 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
 [node name="rainbow" type="Path"]
+curve = SubResource( 1 )
 
 [node name="CSGPolygon" type="CSGPolygon" parent="."]
-polygon = PoolVector2Array( 0, 0, 0, 0.01, 0.1, 0.01, 0.1, 0 )
+polygon = PoolVector2Array( 0, 0, 0, 0.01, 0.1, 0.01, 0.1, 0, 0, 0 )
 mode = 2
 path_node = NodePath("..")
-path_interval_type = 0
+path_interval_type = 1
 path_interval = 0.01
 path_simplify_angle = 0.0
 path_rotation = 2
@@ -16,5 +24,4 @@ path_local = false
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
-smooth_faces = true
 material = ExtResource( 1 )

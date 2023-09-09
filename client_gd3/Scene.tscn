@@ -1,15 +1,21 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://addons/goutte.camera.trackball/trackball_camera.gd" type="Script" id=1]
-[ext_resource path="res://3DModels/Earth.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://cutiemarks.tscn" type="PackedScene" id=1]
+[ext_resource path="res://images/pindrop.svg" type="Texture" id=2]
 [ext_resource path="res://world.gd" type="Script" id=3]
-[ext_resource path="res://images/arrow.png" type="Texture" id=4]
-[ext_resource path="res://cutiemarks.tscn" type="PackedScene" id=5]
-[ext_resource path="res://audio/click1.ogg" type="AudioStream" id=6]
-[ext_resource path="res://3DModels/pindrop.obj" type="ArrayMesh" id=7]
-[ext_resource path="res://images/pindrop.svg" type="Texture" id=8]
+[ext_resource path="res://addons/goutte.camera.trackball/trackball_camera.gd" type="Script" id=4]
+[ext_resource path="res://3DModels/Earth.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://3DModels/pindrop.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://images/arrow.png" type="Texture" id=7]
+[ext_resource path="res://audio/click1.ogg" type="AudioStream" id=8]
 
-[sub_resource type="SphereShape" id=3]
+[sub_resource type="GDScript" id=3]
+script/source = "extends Spatial
+func _process(_delta):
+	rotate_y(deg2rad(-1))
+"
+
+[sub_resource type="SphereShape" id=4]
 radius = 1.0535
 
 [sub_resource type="Animation" id=1]
@@ -92,6 +98,9 @@ tracks/2/keys = {
 
 [node name="world" type="Spatial"]
 script = ExtResource( 3 )
+rotation_speed = 1.0
+server_address = "http://127.0.0.1:2010"
+earth_rotate = true
 
 [node name="Globe" type="Node" parent="."]
 
@@ -100,32 +109,64 @@ script = ExtResource( 3 )
 [node name="Earth" type="StaticBody" parent="Globe"]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0 )
 
-[node name="cutiemarks" parent="Globe/Earth" instance=ExtResource( 5 )]
-transform = Transform( 0.999913, 0, 0, 0, 0.999913, 0, -1.49012e-08, 0, 1, 0, 1.43983, 0 )
+[node name="cutiemarks" type="Spatial" parent="Globe/Earth" instance=ExtResource( 1 )]
+transform = Transform( 0.0174476, 0, 0.999944, 0, 0.999913, 0, -0.999853, 0, 0.0174475, 0, 1.43983, 0 )
+script = SubResource( 3 )
 
 [node name="Mesh" type="MeshInstance" parent="Globe/Earth"]
 cast_shadow = 0
-mesh = ExtResource( 2 )
+mesh = ExtResource( 5 )
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape" type="CollisionShape" parent="Globe/Earth"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="center" type="Position3D" parent="."]
 
 [node name="camera" type="Camera" parent="center"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.6059 )
+transform = Transform( -0.094956, -0.722936, 0.684359, -1.56433e-09, 0.687464, 0.726217, -0.995481, 0.0689584, -0.0652787, 10.289, 10.9183, -0.981436 )
 current = true
 near = 0.01
 far = 8192.0
-script = ExtResource( 1 )
+script = ExtResource( 4 )
 stabilize_horizon = true
+headstand_invert_x = true
+mouse_enabled = true
+mouse_invert = false
 mouse_strength = 0.5
+mouse_move_mode = false
+keyboard_enabled = false
+keyboard_invert = false
+keyboard_strength = 1.0
+joystick_enabled = true
+joystick_invert = false
 joystick_strength = 0.5
+joystick_threshold = 0.09
+joystick_device = 0
+action_enabled = true
+action_invert = false
+action_up = "ui_up"
+action_down = "ui_down"
+action_right = "ui_right"
+action_left = "ui_left"
+action_strength = 1.0
 action_zoom_in = "zoom_in"
 action_zoom_out = "zoom_out"
+action_free_horizon = "cam_free_horizon"
+zoom_enabled = true
+zoom_invert = false
+zoom_strength = 1.0
 zoom_minimum = 0.0
+zoom_maximum = 90.0
 zoom_inertia_treshold = 1e-06
+zoom_in_dampening = 0.0
+inertia_strength = 1.0
+inertia_treshold = 0.0001
+friction = 0.07
+enable_pitch_limit = false
+pitch_up_limit = 1.0
+pitch_down_limit = 1.0
+pitch_limit_strength = 1.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="center/camera"]
 light_energy = 5.0
@@ -137,12 +178,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="bottom_popup" type="Control" parent="UI"]
-margin_top = 144.0
 margin_right = 1026.0
-margin_bottom = 742.0
+margin_bottom = 598.0
 
 [node name="button_sound" type="AudioStreamPlayer" parent="UI/bottom_popup"]
-stream = ExtResource( 6 )
+stream = ExtResource( 8 )
 
 [node name="ColorRect" type="ColorRect" parent="UI/bottom_popup"]
 anchor_right = 0.998
@@ -168,7 +208,6 @@ margin_top = 45.49
 margin_right = -921.0
 margin_bottom = -107.27
 toggle_mode = true
-pressed = true
 text = "rotate earth"
 
 [node name="pin_button" type="Button" parent="UI/bottom_popup/ColorRect"]
@@ -179,8 +218,9 @@ margin_top = 4.0
 margin_right = -817.0
 margin_bottom = -107.0
 toggle_mode = true
+pressed = true
 text = "place"
-icon = ExtResource( 8 )
+icon = ExtResource( 2 )
 expand_icon = true
 
 [node name="bottomPopupButton" type="TextureButton" parent="UI/bottom_popup"]
@@ -190,7 +230,8 @@ margin_right = 581.0
 margin_bottom = 492.0
 rect_scale = Vector2( 0.400001, 0.400001 )
 toggle_mode = true
-texture_normal = ExtResource( 4 )
+pressed = true
+texture_normal = ExtResource( 7 )
 flip_v = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/bottom_popup"]
@@ -212,12 +253,11 @@ timeout = 5.0
 
 [node name="update_timer" type="Timer" parent="."]
 wait_time = 5.0
-autostart = true
 
 [node name="pindrop" type="MeshInstance" parent="."]
-transform = Transform( -1, 1.0677e-07, 1.0677e-07, 0, 0.707107, -0.707107, -1.50996e-07, -0.707107, -0.707107, 0, 0, 0 )
+transform = Transform( -0.481528, 0.866752, 0.129781, -1.29455e-08, 0.148081, -0.988955, -0.876406, -0.476223, -0.0713061, 4.39575, 1.82586, 2.25649 )
 visible = false
-mesh = ExtResource( 7 )
+mesh = ExtResource( 6 )
 
 [node name="place_timer" type="Timer" parent="."]
 

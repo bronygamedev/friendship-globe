@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://3DModels/cutiemarks/twilight.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://3DModels/cutiemarks/celestia.obj" type="ArrayMesh" id=2]
@@ -10,14 +10,7 @@
 [ext_resource path="res://3DModels/cutiemarks/applejack.obj" type="ArrayMesh" id=8]
 [ext_resource path="res://3DModels/cutiemarks/cadence.obj" type="ArrayMesh" id=9]
 
-[sub_resource type="GDScript" id=3]
-script/source = "extends Spatial
-func _process(_delta):
-	rotate_y(deg2rad(-1))
-"
-
 [node name="cutiemarks" type="Spatial"]
-script = SubResource( 3 )
 
 [node name="ring" type="Spatial" parent="."]
 transform = Transform( -0.994992, 0, 0.104609, 0, 1, 0, -0.104609, 0, -0.994992, 0, 0, 0 )

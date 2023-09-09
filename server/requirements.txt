@@ -2,3 +2,4 @@ fastapi[all]
 black
 isort
 gunicorn
+fastapi-admin

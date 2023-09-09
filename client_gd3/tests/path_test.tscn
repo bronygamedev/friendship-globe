@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Spatial
+
+onready var end_point = $end
+onready var camera = $Camera
+var rayOrigin = Vector3()
+var rayEnd = Vector3()
+var mouse3d
+var mousePos 
+
+func _ready():
+	pass
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_RIGHT  and !mouse3d.empty():
+			place_ribbon(mouse3d[\"position\"])
+			
+func _process(delta):
+	mouse3d = cast_ray()
+func cast_ray():
+	var spaceState = get_world().direct_space_state
+	mousePos = get_viewport().get_mouse_position()
+	rayOrigin = camera.project_ray_origin(mousePos)
+	rayEnd = rayOrigin + camera.project_ray_normal(mousePos) * 2000
+	var intersection = spaceState.intersect_ray(rayOrigin,rayEnd)
+	return intersection
+
+func place_ribbon(pos:Vector3):
+	var r = load(\"res://rainbow.tscn\").instance()
+	r.look_at(Vector3.ZERO,Vector3.DOWN)
+	add_child(r)
+	r.curve.add_point(pos,Vector3.ZERO,Vector3.ZERO)
+	r.curve.add_point(Vector3(pos.x,end_point.global_transform.origin.y,pos.z),Vector3(Vector3(0,0,0)),Vector3.ZERO)
+	r.curve.add_point(end_point.global_transform.origin,Vector3.ZERO,Vector3.ZERO)
+	r = null
+"
+
+[sub_resource type="PlaneMesh" id=2]
+
+[node name="Spatial" type="Spatial"]
+script = SubResource( 1 )
+
+[node name="end" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.972228, 0, 0 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.83999, 0 )
+
+[node name="floor" type="CSGMesh" parent="."]
+use_collision = true
+mesh = SubResource( 2 )
