@@ -83,7 +83,7 @@ async def set_points(data: point):
 @app.get("/api/get_points")
 async def get_points(request: Request):
     print("getting data")
-    data = cursor.execute(f"SELECT * FROM points;").fetchall()
+    data = cursor.execute(f"SELECT x,y,z FROM points WHERE day >= {today}").fetchall()
     json_data = json.dumps(data)
     # print(data, " ", json_data, " ", day, " ", request.headers)
     return data

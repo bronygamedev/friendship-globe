@@ -13,12 +13,35 @@ At the end of r/place 2023 moderators of [bronyplace](https://discord.gg/bronypl
 
 I'm currently not accepting PRs until release v0.1.0
 
-## Running.  
+## Running. 
+### setup 
 First, make sure you have the following programs installed
 
 * latest [Godot 3](https://godotengine.org/download/3.x/) build
 * [Python 3.11](https://www.python.org/downloads/)  
-not enough is done on the project.
+
+get the latest stable version [here](https://github.com/bronygamedev/friendship-globe/releases)
+or clone this repo `git clone https://github.com/bronygamedev/friendship-globe.git`
+
+### server set up
+open the folder in the terminal 
+type `cd server` to enter the server directory
+##### linux/macOS
+run `./install_requirements.sh` and wait for it to finish installing all dependencies (this may take a while).
+run `source .venv/bin/activate`
+run `python server.py`
+##### Windows
+run `python -m venv .venv`
+run `./.venv/scripts/activate`
+run `pip install -r requiements.txt`
+run `python server.py`
+
+  
+  
+
+open the project in godot (open godot -> import -> "path/to/friendship-globe/client_gd3/project.godot")
+then click play button in the top right corner 
+
 
 >  **NOTE**:
 >

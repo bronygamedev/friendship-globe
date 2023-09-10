@@ -183,3 +183,4 @@ cython_debug/
 *.pem
 *.crt 
 *.key
+client_gd3/export_presets.cfg

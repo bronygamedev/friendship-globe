@@ -20,10 +20,8 @@ All types of contributions are encouraged and valued. See the [Table of Contents
   - [Reporting Bugs](#reporting-bugs)
   - [Suggesting Enhancements](#suggesting-enhancements)
   - [Your First Code Contribution](#your-first-code-contribution)
-  - [Improving The Documentation](#improving-the-documentation)
 - [Styleguides](#styleguides)
   - [Commit Messages](#commit-messages)
-- [Join The Project Team](#join-the-project-team)
 
 
 ## Code of Conduct
@@ -134,17 +132,16 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/bronyg
 <!-- You might want to create an issue template for enhancement suggestions that can be used as a guide and that defines the structure of the information to be included. If you do so, reference it here in the description. -->
 
 ### Your First Code Contribution
-<!-- TODO
-include Setup of env, IDE and typical getting started instructions?
+ first fork and clone this repo.  
+second you need to set up your environment:
+#### Linux/macOS
+> open the server folder in terminal
+> run `./install_requirements-dev.sh` 
 
--->
-
-### Improving The Documentation
-<!-- TODO
-Updating, improving and correcting the documentation
-
--->
-
+#### Windows 
+> run `python -m venv .venv`
+> run `./.venv/scripts/activate`
+> run `pip install -r requiements-dev.txt`
 ## Styleguides
 For formatting python code we use `black` and `isort` so before commiting please run `isort . && black .`
 ## Attribution
