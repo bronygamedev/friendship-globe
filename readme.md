@@ -8,7 +8,12 @@ The friendship globe symbolizes even though where in different country's where s
 ## Inspiration
 
 At the end of r/place 2023 moderators of [bronyplace](https://discord.gg/bronyplace) were talking about not losing these bonds between the friends we made during r/place 2023 and one of them said something along the lines of  "Just because we can't put a rainbow across the globe doesn't mean we can't find other ways to express our friendship towards one another" and that got me thinking if we can't physically stretch a rainbow across the globe why not do it virtually? So that night I started to work on this.
-
+# branch layout
+ - stable 
+   - this branch gets updated right before every release  and is recommend to pull from to set up a server or to test it out
+ - develop
+   - unstable branch untested code/full of bugs
+   
 ## Contributing
 
 see [CONTRIBUTING.md](https://github.com/bronygamedev/friendship-globe/blob/main/CONTRIBUTING.md)
