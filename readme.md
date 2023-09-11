@@ -3,7 +3,7 @@
 
 # Friendship globe
 
-The friendship globe symbolizes even though where in different country's where still united through the friendships from the MLP fandom.
+The friendship globe symbolizes even though where in different country's where still united through the friendships from the MLP fandom.  
 [video](https://youtu.be/0EUVF0x_aP4)
 ## Inspiration
 
