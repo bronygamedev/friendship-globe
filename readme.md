@@ -11,7 +11,7 @@ At the end of r/place 2023 moderators of [bronyplace](https://discord.gg/bronypl
 
 ## Contributing
 
-I'm currently not accepting PRs until release v0.1.0
+see [CONTRIBUTING.md](https://github.com/bronygamedev/friendship-globe/blob/main/CONTRIBUTING.md)
 
 ## Running. 
 ### setup 
