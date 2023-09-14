@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>friendship globe</title>
     <link rel="icon" type="image/png" href="/assets/images/profile.png">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/home/work/Documents/bronygamdev.github.io/assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.0.6/markdown-it.min.js"></script>
     <base>
 </head>
@@ -31,7 +31,21 @@
         </div>
 
     </nav>
-    <div id="md" class="center"></div>
+    <div class="center centertext">
+        <h3>Hello everypony I'm bronygamedev, a self taught game developer. Today I want to share a project I've been
+            working on since the end of r/place 2023 called "friendship globe". It's a place where you can place 1 rainbow every
+            24hr (it gets removed at midnight), it's meant to symbolize even though where in different country's where
+            still united through the MLP fandom. the project was written in Godot 3 using gdscript. The project is
+            currently in alpha so its vary buggy, and there are no official servers. If you want to contribute to this
+            project you can find it on GitHub. OK, that's all Bye 👋.
+        </h3>
+    </div>
+    <div class="center">
+        <button class="collapsible">Project's Readme</button>
+        <div id="md" class="center MDfile"></div>
+
+    </div>
+
     <script>
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://raw.githubusercontent.com/bronygamedev/friendship-globe/main/readme.md', true);
@@ -46,6 +60,7 @@
         xhr.send();
 
     </script>
+    <script src="/home/work/Documents/bronygamdev.github.io/assets/js/collapsible.js"></script>
 </body>
 
 </html>
