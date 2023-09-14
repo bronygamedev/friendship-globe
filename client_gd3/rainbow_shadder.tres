@@ -1,7 +1,8 @@
 [gd_resource type="Shader" format=2]
 
 [resource]
-code = "shader_type spatial;
+code = "// from https://godotshaders.com/shader/rainbow/
+shader_type spatial;
 render_mode unshaded;
 
 uniform float density: hint_range(0.0, 10.0) = 0.25;

@@ -98,9 +98,6 @@ tracks/2/keys = {
 
 [node name="world" type="Spatial"]
 script = ExtResource( 3 )
-rotation_speed = 1.0
-server_address = "http://127.0.0.1:2010"
-earth_rotate = true
 
 [node name="Globe" type="Node" parent="."]
 
@@ -109,7 +106,7 @@ earth_rotate = true
 [node name="Earth" type="StaticBody" parent="Globe"]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0 )
 
-[node name="cutiemarks" type="Spatial" parent="Globe/Earth" instance=ExtResource( 1 )]
+[node name="cutiemarks" parent="Globe/Earth" instance=ExtResource( 1 )]
 transform = Transform( 0.0174476, 0, 0.999944, 0, 0.999913, 0, -0.999853, 0, 0.0174475, 0, 1.43983, 0 )
 script = SubResource( 3 )
 
@@ -130,43 +127,12 @@ near = 0.01
 far = 8192.0
 script = ExtResource( 4 )
 stabilize_horizon = true
-headstand_invert_x = true
-mouse_enabled = true
-mouse_invert = false
 mouse_strength = 0.5
-mouse_move_mode = false
-keyboard_enabled = false
-keyboard_invert = false
-keyboard_strength = 1.0
-joystick_enabled = true
-joystick_invert = false
 joystick_strength = 0.5
-joystick_threshold = 0.09
-joystick_device = 0
-action_enabled = true
-action_invert = false
-action_up = "ui_up"
-action_down = "ui_down"
-action_right = "ui_right"
-action_left = "ui_left"
-action_strength = 1.0
 action_zoom_in = "zoom_in"
 action_zoom_out = "zoom_out"
-action_free_horizon = "cam_free_horizon"
-zoom_enabled = true
-zoom_invert = false
-zoom_strength = 1.0
 zoom_minimum = 0.0
-zoom_maximum = 90.0
 zoom_inertia_treshold = 1e-06
-zoom_in_dampening = 0.0
-inertia_strength = 1.0
-inertia_treshold = 0.0001
-friction = 0.07
-enable_pitch_limit = false
-pitch_up_limit = 1.0
-pitch_down_limit = 1.0
-pitch_limit_strength = 1.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="center/camera"]
 light_energy = 5.0
@@ -178,8 +144,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="bottom_popup" type="Control" parent="UI"]
+margin_top = 144.0
 margin_right = 1026.0
-margin_bottom = 598.0
+margin_bottom = 742.0
 
 [node name="button_sound" type="AudioStreamPlayer" parent="UI/bottom_popup"]
 stream = ExtResource( 8 )

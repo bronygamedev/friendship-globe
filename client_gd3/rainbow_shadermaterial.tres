@@ -4,5 +4,5 @@
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/density = 0.25
+shader_param/density = 1.0
 shader_param/speed = 1.0

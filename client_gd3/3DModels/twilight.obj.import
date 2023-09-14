@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/twilight.obj-3b1afe1a662e5f359ea5206872d569af.mesh"
+
+[deps]
+
+files=[ "res://.import/twilight.obj-3b1afe1a662e5f359ea5206872d569af.mesh" ]
+
+source_file="res://3DModels/twilight.obj"
+dest_files=[ "res://.import/twilight.obj-3b1afe1a662e5f359ea5206872d569af.mesh", "res://.import/twilight.obj-3b1afe1a662e5f359ea5206872d569af.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
